@@ -52,7 +52,8 @@
 #'# select longitude and latitude coordinates among all the information
 #'occ <- ctenocidaris.nutrix[,c('decimal.Longitude','decimal.Latitude')]
 #'
-#'#Download the environmental predictors restricted on geographical extent and depth (-1500m)
+#'#Download an example of environmental predictors
+#'#restricted on geographical extent and depth (-1500m)
 #'envi <- raster::stack(system.file('extdata', 'pred.grd',package='SDMPlay'))
 #'envi
 #'
@@ -82,22 +83,8 @@
 #'raster::plot(model$raster.prediction, col=palet.col)
 #'#add data
 #'points(occ, col='black',pch=16)
-#'
-#'
-#'# SECOND EXAMPLE: projecting the model on another period
-#'# Remark: to predict on a different RasterStack, the rasterlayer names of the two
-#'# stacks must be the same and the number of layers must be the same as well.
-#'# Changes have been done in this example by attributing similar names to pred
-#'# and pred2000 stacks and adding extra blank layers (NA layers) to pred2000 stack.
-#'envi2000 <- raster::stack(system.file('extdata', 'pred2000.grd',package='SDMPlay'))
-#'
-#'#Run the model
-#'model2 <- SDMPlay:::compute.brt (x=SDMdata, proj.predictors=envi2000,lr=0.0005)
-#'
-#'#Plot the new predicting map
-#'raster::plot(model2$raster.prediction, col=palet.col)
-#'#add data
-#'points(occ, col='black',pch=16)}
+#'}
+
 
 compute.brt <- function(x, proj.predictors, tc = 2, lr = 0.001, bf = 0.75, n.trees = 50, step.size = n.trees) {
 

@@ -53,7 +53,7 @@
 #'\item \emph{$correlation} Spearman rank test value between the different maps produced }
 #'
 #'@note
-#'If you want to build a MaxEnt model, \link{compute.maxent} uses the functionalities of the \link[dismo]{maxent} function. This function uses MaxEnt species distribution software, which is a java program that could be downloaded at \url{http://www.cs.princeton.edu/~schapire/maxent/}. In order to run compute.maxent, put the 'maxent.jar' file downloaded at this adress in the 'java' folder of the dismo package (path obtained with the system.file('java', package='dismo') command). MaxEnt 3.3.3b version or higher is required.
+#'If you want to build a MaxEnt model, \link{compute.maxent} uses the functionalities of the \link[dismo]{maxent} function. This function uses MaxEnt species distribution software, which is a java program that could be downloaded at \url{https://github.com/charleneguillaumot/SDMPlay}. In order to run compute.maxent, put the 'maxent.jar' file downloaded at this adress in the 'java' folder of the dismo package (path obtained with the system.file('java', package='dismo') command). MaxEnt 3.3.3b version or higher is required.
 #'
 #'@seealso
 #'\link[dismo]{nicheOverlap}: compare prediction maps

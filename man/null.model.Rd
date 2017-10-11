@@ -62,7 +62,7 @@ Each time the model is runned, new data (presence-like and background data) are 
 \note{
 Increasing the number of replications will enhance model null relevance (we advice nb.rep=100 for minimum). Please note that processing may take few minutes to hours.
 
-If you want to build a MaxEnt model, \link{compute.maxent} uses the functionalities of the \link[dismo]{maxent} function. This function uses MaxEnt species distribution software, which is a java program that could be downloaded at \url{http://www.cs.princeton.edu/~schapire/maxent/}. In order to run compute.maxent, put the 'maxent.jar' file downloaded at this adress in the 'java' folder of the dismo package (path obtained with the system.file('java', package='dismo') command). MaxEnt 3.3.3b version or higher is required.
+If you want to build a MaxEnt model, \link{compute.maxent} uses the functionalities of the \link[dismo]{maxent} function. This function uses MaxEnt species distribution software, which is a java program that could be downloaded at \url{https://github.com/charleneguillaumot/SDMPlay}. In order to run compute.maxent, put the 'maxent.jar' file downloaded at this adress in the 'java' folder of the dismo package (path obtained with the system.file('java', package='dismo') command). MaxEnt 3.3.3b version or higher is required.
 }
 \examples{
 \dontrun{
@@ -100,4 +100,3 @@ raster::plot(modelN2$pred.mean, col=palet.col)
 \link[dismo]{nicheOverlap}: compare prediction maps
 \link[rJava]{.jpackage}: initialize dismo for Java
 }
-

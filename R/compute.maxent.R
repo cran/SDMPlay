@@ -14,7 +14,8 @@
 #'@details
 #'MaxEnt species distribution model minimizes the relative entropy between environmental descriptors and presence data. Further information are provided in the references below.
 #'
-#'compute.maxent uses the functionalities of the \link[dismo]{maxent} function. This function uses MaxEnt species distribution software, which is a java program that could be downloaded at \url{http://www.cs.princeton.edu/~schapire/maxent/}. In order to run compute.maxent, put the 'maxent.jar' file downloaded at this adress in the 'java' folder of the dismo package (path obtained with the system.file('java', package='dismo') command). MaxEnt 3.3.3b version or higher is required.
+#'compute.maxent uses the functionalities of the \link[dismo]{maxent} function. This function uses MaxEnt species distribution software, which is a java program that could be downloaded at \url{https://github.com/charleneguillaumot/SDMPlay}. In order to run compute.maxent, put the 'maxent.jar' file downloaded at this address in the 'java' folder of the dismo package (path obtained with the system.file('java', package='dismo') command).
+#'
 #'
 #'@note
 #'To implement MaxEnt models, Phillips & Dudik (2008) advice a large number of background data. You can also find further information about background selection in Barbet Massin et al. (2012).
@@ -29,7 +30,6 @@
 #'
 #'
 #'@references
-#'\url{http://www.cs.princeton.edu/~schapire/maxent/}
 #'
 #'Barbet Massin M, F Jiguet, C Albert & W Thuiller (2012) Selecting pseudo absences for species distribution models: how, where and how many? \emph{Methods in Ecology and Evolution}, 3(2): 327-338.
 #'
@@ -52,7 +52,8 @@
 #'# select longitude and latitude coordinates among all the information
 #'occ <- ctenocidaris.nutrix[,c('decimal.Longitude','decimal.Latitude')]
 #'
-#'#Download the environmental predictors restricted on geographical extent and depth (-1500m)
+#'#Download an example of environmental predictors
+#'#restricted on geographical extent and depth (-1500m)
 #'envi <- raster::stack(system.file('extdata', 'pred.grd',package='SDMPlay'))
 #'envi
 #'
@@ -84,28 +85,14 @@
 #'
 #'# Get all the information provided by the model on a html document
 #'model$response
-#'
-#'# SECOND EXAMPLE: projecting the model on another period
-#'# Remark: to predict on a different RasterStack, the rasterlayer names of the two
-#'# stacks must be the same and the number of layers must be the same as well.
-#'# Changes have been done in this example by attributing similar names to pred
-#'# and pred2000 stacks and adding extra blank layers (NA layers) to pred2000 stack.
-#'envi2000 <- raster::stack(system.file('extdata', 'pred2000.grd',package='SDMPlay'))
-#'
-#'# run the model
-#'model2 <- SDMPlay:::compute.maxent(x=SDMdata, proj.predictors=envi2000)
-#'
-#'# plot the new predicting map
-#' raster::plot(model2$raster.prediction, col=palet.col)
-#'# add data
-#'points(occ, col='black',pch=16)}
+#'}
 
 
 compute.maxent <- function(x, proj.predictors) {
 
   jar <- paste(system.file(package="dismo"), "/java/maxent.jar", sep='')
   if (!file.exists(jar)) {
-    stop('file missing:\n', jar, '.\nPlease download it here: http://www.cs.princeton.edu/~schapire/maxent/')
+    stop('file missing:\n', jar, '.\nPlease download it here: https://github.com/charleneguillaumot/SDMPlay')
   }
 
     if (!requireNamespace("dismo")) {

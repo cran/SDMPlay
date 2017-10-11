@@ -48,4 +48,3 @@ raster::plot(r, col=palet.col)
 \seealso{
 \link[raster]{stack}, \link[raster]{raster}, \link[raster]{origin}, \link[raster]{extent}
 }
-
