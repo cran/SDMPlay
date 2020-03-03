@@ -4,8 +4,8 @@ author: "Guillaumot Charlène, Martin Alexis, Eléaume Marc, Saucède Thomas"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{SDMPlay_vignette}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
 Species distribution models (SDMs) have been developed for several years to adress conservation issues, assess the direct impact of human activities on ecosystems and predict the potential distribution shifts of invasive species (see Elith et al. 2006, Elith & Leathwick 2009, Pearson 2007 for reviews). SDM relate species occurrences with environmental information and can extrapolate species distribution on their entire occupied space. Applying SDM on limited occurrence datasets can therefore bring complementary information in non-visited areas. However, users must be aware of potential bias and limitations while using such poor and historical datasets (Araujo & Guisan 2006, Robinson 2011, Proosdij et al. 2016) that require corrections (Phillips et al. 2009, Barbet-Massin et al. 2012). 
@@ -40,7 +40,7 @@ par(mar=c(0,0,0,0))
 ```{r, eval=F, echo=T}
 data("predictors1965_1974")
 data("predictors2005_2012")
-data("predictors2200A1B")
+data("predictors2200AIB")
 ```
 **Plot the layers and explore their properties**
 ```{r, eval=F, echo=T, fig.height=5, fig.width=6, fig.align='center'}

@@ -48,28 +48,30 @@ SDMdata <- read.table(x,header=TRUE, sep=';')
 
 #only run if the maxent.jar file is available, in the right folder
 jar <- paste(system.file(package="dismo"), "/java/maxent.jar", sep='')
-# checking if maxent can be run (normally not part of your script)
-if (file.exists(jar) & require(rJava)) {
+# Check first if maxent can be run (normally not part of your script)
+# (file.exists(jar) & require(rJava)) == TRUE ??
+# rJava may pose a problem to load automatically within this package
+# please load it manually using eventually the archives available from CRAN
 
 # Run the model
-model <- SDMPlay:::compute.maxent(x=SDMdata , proj.predictors=envi)
+#model <- SDMPlay:::compute.maxent(x=SDMdata , proj.predictors=envi)
 
 # Plot the map prediction
 library(grDevices) # add nice colors
-palet.col <- colorRampPalette(c('deepskyblue','green','yellow','red'))(80)
+#palet.col <- colorRampPalette(c('deepskyblue','green','yellow','red'))(80)
 #'raster::plot(model$raster.prediction, col=palet.col)
 # add data
-points(occ, col='black',pch=16)
+#points(occ, col='black',pch=16)
 
 # Get the partial dependance curves
-dismo::response(model$response)
+#dismo::response(model$response)
 
 # Get the percentage of contribution of each variable to the model
 #plot(model$response)
 
 # Get all the information provided by the model on a html document
-model$response
-}
+#model$response
+
 }
 \references{
 Barbet Massin M, F Jiguet, C Albert & W Thuiller (2012) Selecting pseudo absences for species distribution models: how, where and how many? \emph{Methods in Ecology and Evolution}, 3(2): 327-338.
@@ -84,5 +86,4 @@ Phillips S and M Dudik (2008) Modeling of species distributions with MaxEnt: new
 }
 \seealso{
 \link[dismo]{maxent}
-\link[rJava]{.jpackage}: initialize dismo for Java
 }
