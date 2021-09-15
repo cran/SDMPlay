@@ -4,7 +4,8 @@
 \alias{SDMtab}
 \title{Compile species distribution dataset for modelling}
 \usage{
-SDMtab(xydata, predictors, unique.data = TRUE, same = TRUE, background.nb=NULL)
+SDMtab(xydata, predictors, unique.data = TRUE, same = TRUE,
+     background.nb=NULL, KDE_layer=NULL)
 }
 \arguments{
 \item{xydata}{Dataframe with longitude (column 1) and latitude (column 2) of the presence-only data. Decimal longitude and latitude are required.}
@@ -16,6 +17,8 @@ SDMtab(xydata, predictors, unique.data = TRUE, same = TRUE, background.nb=NULL)
 \item{same}{If TRUE (by default), the number of background data sampled in the area equals the number of presence data}
 
 \item{background.nb}{Set as NULL if same= TRUE.}
+
+\item{KDE_layer}{Rasterlayer that describes the frequency of visits in the area (i.e. the spatial bias that could be present in the occurrence dataset)}
 }
 \value{
 A dataframe that contains the id (1 for presence, 0 for background data) of data, their longitude, latitude and extracted values of environmental descriptors at the corresponding locations.
@@ -34,10 +37,12 @@ data('ctenocidaris.nutrix')
 occ <- ctenocidaris.nutrix
 
 #Open environmental descriptors RasterStack
-r <- raster:: stack(system.file('extdata', 'pred.grd',package='SDMPlay'))
+data(predictors2005_2012)
+envi <- predictors2005_2012
+envi
 
 #create the dataframe for modelling
-z <- SDMPlay:::SDMtab(xydata=occ[,c('decimal.Longitude','decimal.Latitude')],predictors=r)
+z <- SDMPlay:::SDMtab(xydata=occ[,c('decimal.Longitude','decimal.Latitude')],predictors=envi)
 head(z)
 
 }

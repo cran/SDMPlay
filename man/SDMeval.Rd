@@ -20,7 +20,7 @@ Dataframe with the following information
 \item \emph{SD.value} Mean standard deviation of the predicted grid }
 }
 \description{
-Performs model evaluation. Measure of AUC (Area Under the Curve) value, confusion matrix, maxSSS threshold (Maximum Sensitivity plus Specificity), percentage of predicted preferential area based on the MaxSSS value and model stability (standard deviation of pixel values )
+Performs model evaluation. Measure of AUC (Area Under the Curve) value, confusion matrix, maxSSS threshold (Maximum Sensitivity plus Specificity), percentage of predicted preferential area based on the MaxSSS value and model stability (standard deviation of pixel values)
 }
 \details{
 Area Under the Curve is a parameter largely refered in the literature and used to test species distribution models performance (Fielding & Bell, 1997). It evaluates the area under the Receiver Operating Curve (ROC), which draws the relationship between 1-specificity (False Positive Rate) and specificity (True Positive Rate). AUC values bordering 1 present models with high True Positive Rate, 0.5 model with random prediction and 0 to models presenting a strong False Positive Rate.
@@ -31,12 +31,23 @@ Modelling performance can be evaluated with the measure of omission rate, the pr
 Models stability is evaluated with the mean standard deviation value of the pixel values of the grid predicted by the model.
 }
 \examples{
-# Model example
-load(system.file('extdata','model.RData',package='SDMPlay'))
-modelBRT <- model
+#Generate a SDMtab and launch a model
+data('ctenocidaris.nutrix')
+occ <- ctenocidaris.nutrix
+occ <- ctenocidaris.nutrix[,c('decimal.Longitude','decimal.Latitude')]
+
+data(predictors2005_2012)
+envi <- predictors2005_2012
+envi
+
+SDMtable_ctenocidaris <- SDMPlay:::SDMtab(xydata=occ,
+                                         predictors=predictors2005_2012,
+                                         unique.data=FALSE,
+                                         same=TRUE)
+model <- SDMPlay:::compute.brt(x=SDMtable_ctenocidaris, proj.predictors=envi,lr=0.005)
 
 # Evaluate modelling performance
-#SDMPlay:::SDMeval(modelBRT)
+SDMPlay:::SDMeval(model)
 }
 \references{
 Fielding A, & J Bell (1997) A review of methods for the assessment of prediction errors in conservation presence absence models. \emph{Environmental Conservation}, 24(1): 38-49.

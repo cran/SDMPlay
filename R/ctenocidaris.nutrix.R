@@ -1,11 +1,11 @@
-#' Records of \emph{Ctenocidaris nutrix} echinoid presences on the Kerguelen Plateau
+#' Presence-only records of the echinoid \emph{Ctenocidaris nutrix} (Kerguelen Plateau)
 #'
-#' @description Dataset that contains the presence of the echinoid species \emph{Ctenocidaris nutrix} reported on the Kerguelen Plateau (63/81W; -46/-56S) during the campaigns of the RV Marion Dufresne MD03 1974 & MD04 1975, POKER 2 (2010) campaigns and the program PROTEKER (2013, 2014, 2015).  \cr \emph{Ctenocidaris nutrix} (Thomson 1876) is a broad range species, distributed from -70.5W to 143.7E and -76.13 to -47.18S in the Southern Ocean. The species is mainly found around the Kerguelen Plateau, near Weddel Sea and Scotia Ridge. The species is known from littoral waters down to 800m. It is a carnivorous and direct developer species that breeds its youngs (David et al. 2005). \emph{Ctenocidaris nutrix} is considered as an indicator species of Vulnerable Marine Ecosystems (VME) by the CCAMLR.
+#' @description Dataset that contains the presence of the echinoid species \emph{Ctenocidaris nutrix} reported from several campaigns including RV Marion Dufresne MD03 1974 & MD04 1975, POKER 2 (2010) and PROTEKER 2013, 2014, 2015.  \cr \emph{Ctenocidaris nutrix} (Thomson 1876) is a broad range species, distributed from -70.5W to 143.7E and -76.13 to -47.18S in the Southern Ocean. The species is mainly found around the Kerguelen Plateau, and near Weddell Sea and Scotia Ridge regions. The species is known from littoral waters down to 800m. It is a carnivorous and direct developer species that breeds its youngs (David et al. 2005). \emph{Ctenocidaris nutrix} is considered as an indicator species of Vulnerable Marine Ecosystems (VME) by the CCAMLR.
 #'
-#' See Guillaumot et al. (submitted) for more details
+#' See Guillaumot et al. (2016) for more details
 #'
 #'
-#'@usage data(ctenocidaris.nutrix)
+#'@usage data('ctenocidaris.nutrix')
 #'
 #'
 #'@format A data frame containing 125 occurrences and 13 descriptive variables
@@ -28,13 +28,13 @@
 #'@references
 #'David B, Chone T, Mooi R, De Ridder C (2005) Antarctic Echinoidea. Synopses of the Antarctic Benthos 10.
 #'
-#'Guillaumot C, A Martin, S Fabri-Ruiz, M Eleaume & T Saucede. Echinoids of the Kerguelen Plateau: Occurrence data and environmental setting for past, present, and future species distribution modelling, Zookeys, Manuscript submitted for publication.
+#'Guillaumot C, A Martin, S Fabri-Ruiz, M Eleaume & T Saucede (2016). Echinoids of the Kerguelen Plateau: Occurrence data and environmental setting for past, present, and future species distribution modelling, Zookeys, 630: 1-17.
 #'
 #'Thomson CW (1876) Notice of some peculiarities in the mode of propagation of certain echinoderms of the southern seas. J. Linn. Soc. London 13: 55-79.
 #'
 #'
 #'@examples
-#'data(ctenocidaris.nutrix)
+#'data('ctenocidaris.nutrix')
 #'x <- ctenocidaris.nutrix
 #'# plot of the occurrences:
 #'# selecting the species according to the campaigns

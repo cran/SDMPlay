@@ -30,10 +30,9 @@
 #'
 #'
 #'@references
-#'
 #'Barbet Massin M, F Jiguet, C Albert & W Thuiller (2012) Selecting pseudo absences for species distribution models: how, where and how many? \emph{Methods in Ecology and Evolution}, 3(2): 327-338.
 #'
-#'Elith J, S Phillips, T Hastie, M Dudik, Y Chee &  C Yates (2011) A statistical explanation of MaxEnt for ecologists. \emph{Diversity and Distributions} 17:43-57. \url{http://dx.doi.org/10.1111/j.1472-4642.2010.00725.x}
+#'Elith J, S Phillips, T Hastie, M Dudik, Y Chee &  C Yates (2011) A statistical explanation of MaxEnt for ecologists. \emph{Diversity and Distributions} 17:43-57.
 #'
 #'Phillips S, M Dudik & R Schapire (2004) A maximum entropy approach to species distribution modeling. \emph{Proceedings of the Twenty-First International Conference on Machine Learning} : 655-662
 #'
@@ -51,17 +50,19 @@
 #'# select longitude and latitude coordinates among all the information
 #'occ <- ctenocidaris.nutrix[,c('decimal.Longitude','decimal.Latitude')]
 #'
-#'#Download an example of environmental predictors
-#'#restricted on geographical extent and depth (-1500m)
-#'envi <- raster::stack(system.file('extdata', 'pred.grd',package='SDMPlay'))
+#'#Download some environmental predictors
+#'data(predictors2005_2012)
+#'envi <- predictors2005_2012
 #'envi
 #'
-#'#Open SDMtab matrix
-#'x <- system.file(file='extdata/SDMdata1500.csv',package='SDMPlay')
-#'SDMdata <- read.table(x,header=TRUE, sep=';')
+#'#Create a SDMtab matrix
+#'SDMtable_ctenocidaris <- SDMPlay:::SDMtab(xydata=occ,
+#'                                          predictors=predictors2005_2012,
+#'                                          unique.data=FALSE,
+#'                                          same=TRUE)
 #'
 #' #only run if the maxent.jar file is available, in the right folder
-#' jar <- paste(system.file(package="dismo"), "/java/maxent.jar", sep='')
+#' #jar <- paste(system.file(package="dismo"), "/java/maxent.jar", sep='')
 
 #'# Check first if maxent can be run (normally not part of your script)
 #'# (file.exists(jar) & require(rJava)) == TRUE ??
@@ -69,13 +70,15 @@
 #'# please load it manually using eventually the archives available from CRAN
 #'
 #'# Run the model
-#'#model <- SDMPlay:::compute.maxent(x=SDMdata , proj.predictors=envi)
+#'#model <- SDMPlay:::compute.maxent(x=SDMtable_ctenocidaris, proj.predictors=envi)
 #'
 #'# Plot the map prediction
 #'library(grDevices) # add nice colors
 #' #palet.col <- colorRampPalette(c('deepskyblue','green','yellow','red'))(80)
 #'#'raster::plot(model$raster.prediction, col=palet.col)
+#'data('worldmap')
 #'# add data
+#'points(worldmap, type="l")
 #'#points(occ, col='black',pch=16)
 #'
 #'# Get the partial dependance curves

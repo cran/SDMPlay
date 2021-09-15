@@ -3,18 +3,19 @@
 \docType{data}
 \name{predictors2200AIB}
 \alias{predictors2200AIB}
-\title{IPCC environmental descriptors predicted for 2200 (AIB scenario) on the Kerguelen Plateau}
-\format{RasterStack of 10 environmental descriptors. Grid: nrow= 100, ncol= 179, ncells= 17900 pixels. Spatial resolution: 0.1. Spatial extent: 63/81W; -46/-56S. \cr Crs : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0. Origin=0. \cr See Guillaumot et al.(2016) for more information
+\title{Environmental descriptors for future A1B scenario for 2200 (Kerguelen Plateau)}
+\format{
+RasterStack of 10 environmental descriptors. Grid: nrow= 100, ncol= 179, ncells= 17900 pixels. Spatial resolution: 0.1. Spatial extent: 63/81W; -46/-56S. \cr Crs : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0. Origin=0. \cr See Guillaumot et al.(2016) for more information
 
 \itemize{
   \item \strong{depth} \cr Bathymetric grid around the Kerguelen Plateau \cr
-  Unit=meter. Reference=Guillaumot et al. (2016), derived from Smith & Sandwell (1997) \cr \url{http://topex.ucsd.edu/WWW_html/mar_topo.html}
+  Unit=meter. Reference=Guillaumot et al. (2016), derived from Smith & Sandwell (1997) \cr \url{https://topex.ucsd.edu/WWW_html/mar_topo.html}
 
-  \item \strong{seasurface_salinity_mean_2200_A1B} \cr Mean sea surface salinity over 2187 to 2196, A1B scenario \cr Unit= PSS. Reference= BIO ORACLE (Tyberghein et al. 2012) \cr \url{http://www.oracle.ugent.be/}
+  \item \strong{seasurface_salinity_mean_2200_A1B} \cr Mean sea surface salinity over 2187 to 2196, A1B scenario \cr Unit= PSS. Reference= BIO ORACLE (Tyberghein et al. 2012) \cr \url{https://www.bio-oracle.org/}
 
-  \item \strong{seasurface_temperature_mean_2200_A1B} \cr Mean sea surface temperature over 2187-2196, A1B scenario \cr Unit=Celsius degrees. Reference= BIO ORACLE (Tyberghein et al. 2012) \cr \url{http://www.oracle.ugent.be/}
+  \item \strong{seasurface_temperature_mean_2200_A1B} \cr Mean sea surface temperature over 2187-2196, A1B scenario \cr Unit=Celsius degrees. Reference= BIO ORACLE (Tyberghein et al. 2012) \cr \url{https://www.bio-oracle.org/}
 
-  \item \strong{seasurface_temperature_amplitude_2200_A1B} \cr Amplitude between mean summer and mean winter sea surface temperature. Absolute value interpolated over 2187-2196, scenario A1B \cr Unit=Celsius degrees. Reference= BIO ORACLE (Tyberghein et al. 2012) \cr \url{http://www.oracle.ugent.be/}
+  \item \strong{seasurface_temperature_amplitude_2200_A1B} \cr Amplitude between mean summer and mean winter sea surface temperature. Absolute value interpolated over 2187-2196, scenario A1B \cr Unit=Celsius degrees. Reference= BIO ORACLE (Tyberghein et al. 2012) \cr \url{https://www.bio-oracle.org/}
 
   \item \strong{chlorophyla_summer_mean_2002_2009} \cr Surface chlorophyll a concentration. Summer mean over 2002-2009 \cr Unit=mg/m3. Reference=MODIS AQUA (NASA) 2010 \cr \url{https://oceandata.sci.gsfc.nasa.gov/}
 
@@ -27,15 +28,16 @@
   \item \strong{seafloor_oxygen_mean_1955_2012} \cr Mean seafloor oxygen concentration over 1955-2012 \cr Unit=mL/L. Reference= Guillaumot et al. (2016), derived from World Ocean Circulation Experiment 2013 sea surface oxygen concentration layers \cr \url{https://www.nodc.noaa.gov/OC5/woa13/woa13data.html}
 
   \item \strong{roughness} \cr Rugosity index (difference between minimal and maximal depth values of the 8 neighbour-pixels) \cr Unit= meters. Reference=Guillaumot et al.(2016), derived from bathymetric layer.
-  }}
+  }
+}
 \usage{
-data(predictors2200AIB)
+data('predictors2200AIB')
 }
 \description{
-RasterStack of 10 environmental descriptors modelled by IPCC (scenario AIB, 4th report, 2007) for 2187 to 2196 (described as 2200), on the extent of the Kerguelen Plateau (63/81W; -46/-56S)
+RasterStack of 10 environmental descriptors modelled by IPCC (scenario A1B, 4th report, 2007) for 2187 to 2196 (described as 2200), on the extent of the Kerguelen Plateau (63/81W; -46/-56S)
 }
 \examples{
-data(predictors2200AIB)
+data('predictors2200AIB')
 raster :: plot(predictors2200AIB)
 
 }

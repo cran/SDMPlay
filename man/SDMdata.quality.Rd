@@ -16,12 +16,25 @@ prop Dataframe that provides the proportion of NA values on which the presence d
 Evaluate the percentage of occurrences that fall on pixels assigned by NA values in the environmental RasterStack. It may provide interesting information to interpret model robustness.
 }
 \examples{
-#Open SDMtab object example
-x <- system.file ("extdata","SDMdata1500.csv", package="SDMPlay")
-SDMdata <- read.table(x,header=TRUE, sep=";")
+#Generate a SDMtab
+data('ctenocidaris.nutrix')
+occ <- ctenocidaris.nutrix
+# select longitude and latitude coordinates among all the information
+occ <- ctenocidaris.nutrix[,c('decimal.Longitude','decimal.Latitude')]
 
-# Evaluate the dataset
-SDMPlay:::SDMdata.quality(data=SDMdata)
+library(raster)
+data("predictors2005_2012")
+envi <- predictors2005_2012
+envi
+
+#Create the SDMtab matrix
+SDMtable_ctenocidaris <- SDMPlay:::SDMtab(xydata=occ,
+                                         predictors=predictors2005_2012,
+                                         unique.data=FALSE,
+                                         same=TRUE)
+
+# Evaluate the matrix quality
+SDMPlay:::SDMdata.quality(data=SDMtable_ctenocidaris)
 }
 \seealso{
 \link{SDMeval}

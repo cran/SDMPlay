@@ -1,6 +1,6 @@
 #' Evaluate species distribution models
 #'
-#'@description Performs model evaluation. Measure of AUC (Area Under the Curve) value, confusion matrix, maxSSS threshold (Maximum Sensitivity plus Specificity), percentage of predicted preferential area based on the MaxSSS value and model stability (standard deviation of pixel values )
+#'@description Performs model evaluation. Measure of AUC (Area Under the Curve) value, confusion matrix, maxSSS threshold (Maximum Sensitivity plus Specificity), percentage of predicted preferential area based on the MaxSSS value and model stability (standard deviation of pixel values)
 #'
 #'@usage
 #'SDMeval(model)
@@ -32,12 +32,23 @@
 #'Liu C, M White & G Newell (2013) Selecting thresholds for the prediction of species occurrence with presence only data. \emph{Journal of Biogeography}, 40(4): 778-789.
 #'
 #'@examples
-#'# Model example
-#'load(system.file('extdata','model.RData',package='SDMPlay'))
-#'modelBRT <- model
+#'#Generate a SDMtab and launch a model
+#'data('ctenocidaris.nutrix')
+#'occ <- ctenocidaris.nutrix
+#'occ <- ctenocidaris.nutrix[,c('decimal.Longitude','decimal.Latitude')]
+#'
+#'data(predictors2005_2012)
+#'envi <- predictors2005_2012
+#'envi
+#'
+#'SDMtable_ctenocidaris <- SDMPlay:::SDMtab(xydata=occ,
+#'                                          predictors=predictors2005_2012,
+#'                                          unique.data=FALSE,
+#'                                          same=TRUE)
+#'model <- SDMPlay:::compute.brt(x=SDMtable_ctenocidaris, proj.predictors=envi,lr=0.005)
 #'
 #'# Evaluate modelling performance
-#'#SDMPlay:::SDMeval(modelBRT)
+#'SDMPlay:::SDMeval(model)
 
 
 

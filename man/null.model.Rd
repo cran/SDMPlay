@@ -48,16 +48,16 @@ List of 6
 \item \emph{$correlation} Spearman rank test value between the different maps produced }
 }
 \description{
-Compute null model. Null models are useful tools to enhance a priori due to occurrence spatial structuration in species distribution predictions (e.g. non homogeneous sampling). \cr
-Null model 'type 1' performs a model by randomly sampling data in a matrix that provides the visited longitudes and latitudes. Model null type #1 highlights extra information about prior influences of sampling effort on models.
+Compute null model. Null models are useful tools to highlight an a priori evaluation of the influence of presence records spatial structuration in model predictions (i.e. influence of aggregated sampling).
+\cr Null model type #1 performs a model by randomly sampling locations from the ensemble of visited stations, therefore simulating the influence of sampling effort on model predictions.
 
 Null model type #2 samples data in the entire study area, and reflects what should be predicted if occurrences were randomly distributed in the area.
 
-Null models are a compilation of \emph{nb.rep} models. Species distribution models can be compared to density distribution of the null model outputs in order to estimate signification rates.
+Models should be replicated \emph{nb.rep} times in order to estimate statistical scores.
 }
 \details{
 Data are sampled without replacement.
-Each time the model is runned, new data (presence-like and background data) are sampled
+Each time the model is runned, new data (presence and background data) are sampled
 }
 \note{
 Increasing the number of replications will enhance model null relevance (we advice nb.rep=100 for minimum). Please note that processing may take few minutes to hours.
@@ -66,16 +66,15 @@ If you want to build a MaxEnt model, \link{compute.maxent} uses the functionalit
 }
 \examples{
 \dontrun{
-library(dismo)
-#Download the environmental predictors restricted on geographical extent and depth (-1500m)
-envi <-raster::stack(system.file('extdata', 'pred.grd',package='SDMPlay'))
+# Load environmental predictors
+data(predictors2005_2012)
+envi <- predictors2005_2012
+envi
 
-# Realize a null model type #2 with BRT
+# Realise a null model type #2 with BRT
 #--------------------------------------
-# NB: the following arguments chosen for the example are not relevant,
-# in the scope to minimize running time
 modelN2 <- SDMPlay:::null.model(xy=NULL,predictors=envi,type=2,algorithm='brt',
-                     nb=300,unique.data=TRUE, same=TRUE, nb.rep=2,lr=0.005)
+                     nb=300,unique.data=TRUE, same=TRUE, nb.rep=2,lr=0.0005)
 
 # Look at the inputs used to implement the model
 modelN2$input
@@ -84,7 +83,7 @@ modelN2$input
 modelN2$eval
 
 # Get the evaluation of the mean of all these produced models (i.e. evaluation
-# of the null model )
+# of the null model)
 modelN2$eval.null
 
 # Get the values of Spearman correlations between the all the prediction maps produced
@@ -93,7 +92,9 @@ modelN2$correlation
 # Plot the mean null model map with nice colors
 library(grDevices)
 palet.col <- colorRampPalette(c('deepskyblue','green','yellow', 'red'))(80)
+data('worldmap')
 raster::plot(modelN2$pred.mean, col=palet.col)
+points(worldmap, type="l")
 }
 }
 \seealso{

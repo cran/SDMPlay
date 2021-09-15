@@ -1,15 +1,15 @@
-#' Environmental descriptors for 1965-1974 on the Kerguelen Plateau
+#' Environmental descriptors for 1965-1974 (Kerguelen Plateau)
 #'
 #' @description RasterStack that compiles 15 environmental descriptors on the Kerguelen Plateau (63/81W; -46/-56S). See Guillaumot et al. (2016) for more information
 #'
-#' @usage data(predictors1965_1974)
+#' @usage data('predictors1965_1974')
 #'
 #' @format
 #' RasterStack of 15 environmental descriptors. Grid: nrow= 100, ncol= 179, ncells= 17900 pixels. Spatial resolution: 0.1. Spatial extent: 63/81W; -46/-56S. \cr Crs : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0. Origin=0
 #'
 #' \itemize{
 #'   \item \strong{depth} \cr Bathymetric grid around the Kerguelen Plateau \cr
-#'   Unit=meter. Reference=Guillaumot et al. (2016), derived from Smith & Sandwell (1997) \cr \url{http://topex.ucsd.edu/WWW_html/mar_topo.html}
+#'   Unit=meter. Reference=Guillaumot et al. (2016), derived from Smith & Sandwell (1997) \cr \url{https://topex.ucsd.edu/WWW_html/mar_topo.html}
 #'
 #'   \item \strong{seasurface_temperature_mean_1965_1974} \cr Mean sea surface temperature over 1965-1974 \cr Unit=Celsius degrees. Reference= World Ocean Circulation Experiment 2013 \cr \url{https://www.nodc.noaa.gov/OC5/woa13/woa13data.html}
 #'
@@ -50,7 +50,8 @@
 #'
 #'Smith W, Sandwell D (1997) Global seafloor topography from satellite altimetry and ship depth soundings. Science 277(5334): 1957-1962. doi: 10.1126/science.277.5334.1956.
 #'
-#'@examples data(predictors1965_1974)
+#'@examples
+#'data('predictors1965_1974')
 #'raster::plot(predictors1965_1974)
 #'
 "predictors1965_1974"

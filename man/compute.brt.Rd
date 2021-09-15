@@ -5,7 +5,7 @@
 \title{Compute BRT (Boosted Regression Trees) model}
 \usage{
 compute.brt(x, proj.predictors, tc = 2, lr = 0.001, bf = 0.75,
-           n.trees = 50, step.size = n.trees)
+           n.trees = 50, step.size = n.trees, n.folds= 10, fold.vector = NULL)
 }
 \arguments{
 \item{x}{\link{SDMtab} object or dataframe that contains id, longitude, latitude and values of environmental descriptors at corresponding locations}
@@ -20,21 +20,27 @@ compute.brt(x, proj.predictors, tc = 2, lr = 0.001, bf = 0.75,
 
 \item{n.trees}{Number of initial trees to fit. Set at 50 by default}
 
-\item{step.size}{Number of trees to add at each cycle}
+\item{step.size}{Number of trees to add at each cycle, set equal to n.trees by default}
+
+\item{n.folds}{Number of subsets into which the initial dataset (x) is divided for model evaluation procedures (cross-validation). Set to 10 by default.}
+
+\item{fold.vector}{Vector indicating the fold group to which each data belongs to.}
 }
 \value{
 \itemize{
-A list of 4
+A list of 5
 \item \emph{model$algorithm} "brt" string character
 \item \emph{model$data} x dataframe that was used to implement the model
-\item \emph{model$response} Parameters returned by the model object
-\item \emph{model$raster.prediction} Raster layer that predicts the potential species distribution}
+\item \emph{model$response} Parameters returned by the model object: list of 41, see \link[dismo]{gbm.step} for more info
+\item \emph{model$raster.prediction} Raster layer that predicts the potential species distribution
+\item \emph{model$eval.stats} List of elements to evaluate the model: AUC, maxSSS, COR, pCOR, TSS, ntrees, residuals
+}
 }
 \description{
 Compute species distribution models with Boosted Regression Trees
 }
 \details{
-The function realizes a BRT model according to the \link[dismo]{gbm.step} function provided by Elith et al.(2008). See the publication for further information about setting decisions. \cr The map produced provides species presence probability on the projected area.
+The function realises a BRT model according to the \link[dismo]{gbm.step} function provided by Elith et al.(2008). See the publication for further information about setting decisions. The map produced provides species presence probability on the projected area.
 }
 \note{
 See Barbet Massin et al. (2012) for information about background selection to implement BRT models
@@ -47,43 +53,50 @@ occ <- ctenocidaris.nutrix
 # select longitude and latitude coordinates among all the information
 occ <- ctenocidaris.nutrix[,c('decimal.Longitude','decimal.Latitude')]
 
-#Download an example of environmental predictors
-#restricted on geographical extent and depth (-1500m)
-envi <- raster::stack(system.file('extdata', 'pred.grd',package='SDMPlay'))
+#Download some environmental predictors
+data(predictors2005_2012)
+envi <- predictors2005_2012
 envi
 
-#Open SDMtab matrix
-x <- system.file(file='extdata/SDMdata1500.csv',package='SDMPlay')
-SDMdata <- read.table(x,header=TRUE, sep=';')
+#Create a SDMtab matrix
+SDMtable_ctenocidaris <- SDMPlay:::SDMtab(xydata=occ,
+                                         predictors=predictors2005_2012,
+                                         unique.data=FALSE,
+                                         same=TRUE)
 
 #Run the model
-model <- SDMPlay:::compute.brt (x=SDMdata, proj.predictors=envi,lr=0.0005)
+model <- SDMPlay:::compute.brt(x=SDMtable_ctenocidaris, proj.predictors=envi,lr=0.0005)
 
 #Plot the partial dependance plots
 dismo::gbm.plot(model$response)
 
-#Get the contribution of each variable for the model
+#Get the contribution of each variable to the model
 model$response$contributions
 
 #Get the interaction between variables
 dismo::gbm.interactions(model$response)
-#Plot the interactions
+
+#Plot some interactions
 int <- dismo::gbm.interactions(model$response)
-# choose the interaction to plot
 dismo::gbm.perspec(model$response,int$rank.list[1,1],int$rank.list[1,3])
 
 #Plot the map prediction
 library(grDevices) # add nice colors
 palet.col <- colorRampPalette(c('deepskyblue','green','yellow', 'red'))( 80 )
-raster::plot(model$raster.prediction, col=palet.col)
+raster::plot(model$raster.prediction, col=palet.col,
+            main="Prediction map of Ctenocidaris nutrix distribution")
+data('worldmap')
 #add data
+points(worldmap, type="l")
 points(occ, col='black',pch=16)
+
+REMARK: see more examples in the vignette tutorials
 }
 }
 \references{
-Barbet Massin M, F Jiguet, C Albert & W Thuiller (2012) Selecting pseudo absences for species distribution models: how, where and how many? \emph{Methods in Ecology and Evolution}, 3(2): 327-338.
-
 Elith J, J Leathwick & T Hastie (2008) A working guide to boosted regression trees. \emph{Journal of Animal Ecology}, 77(4): 802-813.
+
+Barbet Massin M, F Jiguet, C Albert & W Thuiller (2012) Selecting pseudo absences for species distribution models: how, where and how many? \emph{Methods in Ecology and Evolution}, 3(2): 327-338.
 }
 \seealso{
 \link[dismo]{gbm.step}

@@ -1,13 +1,13 @@
-#' Records of \emph{Brisaster antarcticus} echinoid presences on the Kerguelen Plateau
+#' Presence-only records of the echinoid \emph{Brisaster antarcticus} (Kerguelen Plateau)
 #'
-#' @description Dataset that contains the presence of the echinoid species \emph{Brisaster antarcticus} reported on the Kerguelen Plateau (63/81W; -46/-56S) during the campaigns of the RV Marion Dufresne MD03 1974 & MD04 1975, POKER 2 (2010) campaigns and the program PROTEKER (2013, 2014, 2015).  \cr \emph{Brisaster antarcticus} (Doderlein 1906) is distributed from 3.5 to 75.6W and -53.35 to -45.95S in the Southern Ocean. The species is mainly found around Kerguelen and Crozet Islands. \emph{Brisaster antarcticus} commonly lives from 100 to 600 meters depth. \cr It is a detrivorous species for which reproduction includes dispersal (David et al. 2005).
+#' @description Dataset that contains the presence records of the echinoid species \emph{Brisaster antarcticus} reported from several oceanographic campaigns including RV Marion Dufresne MD03 1974 & MD04 1975, POKER 2 (2010) and PROTEKER 2013, 2014, 2015.  \cr \emph{Brisaster antarcticus} (Doderlein 1906) is distributed from 3.5 to 75.6W and -53.35 to -45.95S in the Southern Ocean. The species is mainly found around Kerguelen and Crozet Islands. \emph{Brisaster antarcticus} commonly lives from 100 to 600 meters depth. It is a detrivorous species for which reproduction includes dispersal (David et al. 2005).
 #'
-#' See Guillaumot et al. (submitted) for more details.
+#' See Guillaumot et al. (2016) for more details.
 #'
 #'
-#' @usage data(brisaster.antarcticus)
+#' @usage data('Brisaster.antarcticus')
 #'
-#'@format A data frame containing 43 occurrences and 13 descriptive variables
+#'@format A data frame containing 43 occurrences and 13 descriptive variables of the associated environmental conditions
 #'\itemize{
 #' \item \emph{id}                         \cr   Occurrence number indicator
 #' \item \emph{scientific.name}           \cr   Species scientific name
@@ -29,11 +29,11 @@
 #'
 #'Doderlein L (1906) Die Echinoiden der Deutschen Tiefsee-Expedition. Deutsche Tiefsee Expedition 1898-1899. 5: 63-290.
 #'
-#'Guillaumot C, A Martin, S Fabri-Ruiz, M Eleaume & T Saucede. Echinoids of the Kerguelen Plateau: Occurrence data and environmental setting for past, present, and future species distribution modelling, Zookeys, Manuscript submitted for publication.
+#'Guillaumot C, A Martin, S Fabri-Ruiz, M Eleaume & T Saucede (2016). Echinoids of the Kerguelen Plateau: Occurrence data and environmental setting for past, present, and future species distribution modelling, Zookeys, 630: 1-17.
 #'
 #'@examples
-#'data(brisaster.antarcticus)
-#'x <- brisaster.antarcticus
+#'data('Brisaster.antarcticus')
+#'x <- brisaster.antarcticus #(be careful of the capital letter distinction)
 #'
 #'# plot of the occurrences:
 #'# selecting the species according to the campaigns
@@ -47,8 +47,10 @@
 #'depth <- raster :: subset(predictors1965_1974, 1)
 #'
 #'raster::plot(depth, col=blue.palette,main= "Brisaster antarcticus occurrences")
+#'data('worldmap')
 #'
 #'# adding the occurrence data to the background
+#'points(worldmap,type="l")
 #'points(brisaster7475[,c('decimal.Longitude','decimal.Latitude')],
 #'       col='orange',pch=16)
 #'points(brisaster20102015[,c('decimal.Longitude','decimal.Latitude')],
